@@ -45,7 +45,7 @@
 	//This post creates the todo requested and then it shows the updated version of todos to the user.
 	app.post('/api/todos', function(req, res) {
 	    Todo.create({
-	        text: req.body.text;
+	        text: req.body.text,
 	        done: false
 	    }, function(err, todo) {
 	        if (err) {
