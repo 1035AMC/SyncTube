@@ -22,8 +22,11 @@
 
 	app.use(methodOverride());
 
+	var Todo = mongoose.model("Todo", {
+	    text: String
+	});
 
-	var retrieve_todos = function() {
+	app.get("/api/todos", function(req, res) {
 	    Todo.find(function(err, todo) {
 	        if (err) {
 	            res.send(err);
@@ -31,18 +34,10 @@
 	            res.json(todos);
 	        };
 	    });
-	};
-
-	var Todo = mongoose.model("Todo", {
-	    text: String
-	});
-
-	app.get("/api/todos", function(req, res) {
-		retrieve_todos();
 	});
 
 
-	//This post creates the todo requested and then it shows the updated version of todos to the user.
+	 //This post creates the todo requested and then it shows the updated version of todos to the user.
 	app.post('/api/todos', function(req, res) {
 	    Todo.create({
 	        text: req.body.text,
@@ -51,36 +46,36 @@
 	        if (err) {
 	            res.send(err);
 	        } else {
-	        	Todo.find(function(err,values){
-	        		if (err){
-	        			res.send(err);
-	        		}else{
-	        			res.json(values)
-	        		};
-	        	});
+	            Todo.find(function(err, values) {
+	                if (err) {
+	                    res.send(err);
+	                } else {
+	                    res.json(values)
+	                };
+	            });
 
 	        };
 	    });
 	});
 
-	//delete a todo
+	 //delete a todo
 
-	app.delete('/api/todos/:todo_id', function(req, res){
-		Todo.remove({
-			_id : req.params.todo_id
-		}, function(err, todo){
-			if (err){
-				res.send(err);
-			}else{
-				Todo.find(err, values){
-					if (err){
-						res.send(err)
-					}
-					res.json(values);
-				};
-			};
-		});
+	app.delete('/api/todos/:todo_id', function(req, res) {
+	    Todo.remove({
+	        _id: req.params.todo_id
+	    }, function(err, todo) {
+	        if (err) {
+	            res.send(err);
+	        } else {
+	            Todo.find(function(err, values)) {
+	                if (err) {
+	                    res.send(err)
+	                };
+	                res.json(values);
+	            };
+	        };
+	    });
 	});
 
-	 app.listen(8080);
+	app.listen(8080);
 	console.log("App listening on port 8080");
