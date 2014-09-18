@@ -67,7 +67,7 @@
 	        if (err) {
 	            res.send(err);
 	        } else {
-	            Todo.find(function(err, values)) {
+	            Todo.find(function(err, values) {
 	                if (err) {
 	                    res.send(err)
 	                };
