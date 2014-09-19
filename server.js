@@ -6,7 +6,7 @@
 	var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
 
-	app.set('port', (process.env.PORT || 5000))
+	app.set('port', (process.env.PORT || 5000));
 	app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
 	app.use(morgan('dev'));
 	app.use(bodyParser.urlencoded({
@@ -60,17 +60,17 @@
 	 //delete a todo
 
 	app.delete('/api/todos/:todo_id', function(req, res) {
-		Todo.remove({
-			_id : req.params.todo_id
-		}, function(err, todo) {
-			if (err)
-				res.send(err);
+	    Todo.remove({
+	        _id: req.params.todo_id
+	    }, function(err, todo) {
+	        if (err)
+	            res.send(err);
 
-			// get and return all the todos after you create another
-			Todo.find(function(err, todos) {
-				if (err)
-					res.send(err)
-				res.json(todos);
-			});
-		})
+	        // get and return all the todos after you create another
+	        Todo.find(function(err, todos) {
+	            if (err)
+	                res.send(err)
+	            res.json(todos);
+	        });
+	    })
 	});
