@@ -72,5 +72,5 @@
 					res.send(err)
 				res.json(todos);
 			});
-		});
+		})
 	});
