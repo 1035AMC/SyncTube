@@ -1,7 +1,7 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html lang="en" ng-app='scotchTodo'>
+<html lang="en" ng-app='syncTube'>
 
 <head>
     <!-- META -->
@@ -50,7 +50,7 @@
             <div class="col-sm-4 col-sm-offset-4">
 
                 <!-- LOOP OVER THE TODOS IN $scope.todos -->
-                <div class="checkbox" ng-repeat="todo in todos">
+                <div class="checkbox" ng-hide = "todos.length == 0" ng-repeat="todo in todos">
                     <label>
                         <input type="checkbox" ng-click="deleteTodo(todo._id)">{{ todo.text }}
                     </label>
